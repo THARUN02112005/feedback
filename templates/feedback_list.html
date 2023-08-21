@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback List</title>
+</head>
+<body>
+    <h1>Feedback List</h1>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Feedback</th>
+            <th>Image</th>
+            <th>Status</th> <!-- Add the Status column -->
+        </tr>
+        {% for feedback in feedback_data %}
+        <tr>
+            <td>{{ feedback["Timestamp"] }}</td>
+            <td>{{ feedback["Name"] }}</td>
+            <td>{{ feedback["Email"] }}</td>
+            <td>{{ feedback["Feedback"] }}</td>
+            <td>
+                {% if feedback["Image"] != "No Image" %}
+                <img src="{{ url_for('static', filename='uploads/' + feedback['Image']) }}" alt="Feedback Image" width="100">
+                {% else %}
+                {{ feedback["Image"] }}
+                {% endif %}
+            </td>
+            <td>{{ feedback["Status"] }}</td> <!-- Display the Status -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
